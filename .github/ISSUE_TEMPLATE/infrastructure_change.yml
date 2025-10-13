@@ -1,0 +1,163 @@
+name: Infrastructure Change
+description: Request a change to infrastructure, configuration, or deployment
+title: "[INFRA] "
+labels: ["infrastructure", "needs-approval"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Infrastructure Change Request
+        Request changes to servers, databases, configurations, deployments, or other infrastructure.
+
+  - type: textarea
+    id: change-description
+    attributes:
+      label: Change Description
+      description: What infrastructure change are you proposing?
+      placeholder: Clear description of the infrastructure change
+    validations:
+      required: true
+
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Change Type
+      description: What type of infrastructure change is this?
+      options:
+        - Server/Cloud configuration
+        - Database change
+        - Network/Security configuration
+        - Deployment pipeline
+        - Environment setup
+        - Third-party service integration
+        - Dependency update
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justification
+      description: Why is this change needed?
+      placeholder: Explain the business or technical reason for this change
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk-level
+    attributes:
+      label: Risk Level
+      description: What is the risk level of this change?
+      options:
+        - High (potential for system downtime or data loss)
+        - Medium (may affect performance or availability)
+        - Low (minimal impact expected)
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected-systems
+    attributes:
+      label: Affected Systems
+      description: What systems, services, or environments will be affected?
+      placeholder: |
+        - Production database
+        - API servers
+        - User authentication service
+        etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation-plan
+    attributes:
+      label: Implementation Plan
+      description: How will this change be implemented?
+      placeholder: |
+        Step-by-step plan:
+        1. Backup current configuration
+        2. Apply changes to staging
+        3. Test thoroughly
+        4. Apply to production during maintenance window
+    validations:
+      required: true
+
+  - type: textarea
+    id: rollback-plan
+    attributes:
+      label: Rollback Plan
+      description: How can this change be reversed if something goes wrong?
+      placeholder: Describe the rollback procedure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: downtime-required
+    attributes:
+      label: Downtime Required?
+      description: Will this change require system downtime?
+      options:
+        - "Yes - estimated downtime required"
+        - "No - can be done without downtime"
+        - "Unknown - needs assessment"
+    validations:
+      required: true
+
+  - type: input
+    id: maintenance-window
+    attributes:
+      label: Preferred Maintenance Window
+      description: When should this change be made?
+      placeholder: "e.g., Saturday 2AM-4AM UTC, or during business hours"
+
+  - type: checkboxes
+    id: security-considerations
+    attributes:
+      label: Security Considerations
+      description: Check all that apply
+      options:
+        - label: This change affects authentication/authorization
+        - label: This change affects data encryption
+        - label: This change affects network security
+        - label: This change affects access controls
+        - label: This change affects logging/monitoring
+        - label: This change requires security review
+        - label: No security implications
+
+  - type: textarea
+    id: testing-plan
+    attributes:
+      label: Testing Plan
+      description: How will you verify this change works correctly?
+      placeholder: |
+        - Test connectivity
+        - Verify performance metrics
+        - Confirm security controls
+        etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Are there any dependencies or prerequisites?
+      placeholder: List any dependencies, approvals needed, or prerequisites
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information, documentation, or links
+      placeholder: Add any additional context, links to documentation, or related issues
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Next Steps
+        1. Team and security reviewer will assess risk and impact
+        2. If approved, change will be scheduled
+        3. A QA Testing issue will be created to verify the change before and after implementation

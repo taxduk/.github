@@ -1,0 +1,168 @@
+name: QA & Acceptance Testing
+description: Test evidence record for change approval and deployment
+title: "[QA] "
+labels: ["qa-testing", "needs-approval"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## QA and Acceptance Testing Record
+        Complete all sections before requesting deployment approval.
+
+  - type: input
+    id: change-description
+    attributes:
+      label: Change Description
+      description: Brief description of what changed
+      placeholder: "e.g., Added user password reset feature"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk-level
+    attributes:
+      label: Risk Level
+      description: Select risk level to determine testing depth
+      options:
+        - High (production systems, customer data, authentication)
+        - Medium (internal tools, non-sensitive data)
+        - Low (documentation, minor UI changes)
+    validations:
+      required: true
+
+  - type: input
+    id: test-environment
+    attributes:
+      label: Test Environment
+      description: Where were tests conducted?
+      placeholder: "e.g., Staging, Dev environment, Local"
+    validations:
+      required: true
+
+  - type: textarea
+    id: functional-tests
+    attributes:
+      label: Functional Test Results
+      description: Describe what was tested and outcomes
+      placeholder: |
+        - Tested password reset flow: ✅ Pass
+        - Verified email sent correctly: ✅ Pass
+        - Tested invalid email handling: ✅ Pass
+    validations:
+      required: true
+
+  - type: textarea
+    id: performance-tests
+    attributes:
+      label: Performance Test Results
+      description: Confirm no performance degradation (N/A if not applicable)
+      placeholder: |
+        - Page load time: < 2s ✅
+        - API response time: < 500ms ✅
+        - Or: N/A - documentation change only
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Security Testing
+        Check all applicable items. For High/Medium risk changes, most items should be checked.
+
+  - type: checkboxes
+    id: owasp-top-10
+    attributes:
+      label: OWASP Top 10 Security Checks
+      description: Verify relevant vulnerabilities have been tested
+      options:
+        - label: Broken Access Control - verified authorization works correctly
+        - label: Cryptographic Failures - sensitive data properly encrypted
+        - label: Injection - tested for SQL/command/LDAP injection vulnerabilities
+        - label: Insecure Design - security requirements considered in design
+        - label: Security Misconfiguration - no default credentials, unnecessary features disabled
+        - label: Vulnerable Components - dependencies scanned and up to date
+        - label: Authentication Failures - login/session management tested
+        - label: Data Integrity Failures - unsigned/unverified data handled securely
+        - label: Logging Failures - security events properly logged
+        - label: SSRF - server-side request forgery protections in place
+        - label: N/A - Change does not touch these areas (explain below)
+
+  - type: checkboxes
+    id: org-security-controls
+    attributes:
+      label: Organization Security Controls
+      description: Verify organization-specific requirements
+      options:
+        - label: Data encryption verified (at rest and in transit)
+        - label: RBAC/permissions working correctly
+        - label: Audit logging operational
+        - label: Input validation and sanitization implemented
+        - label: Secure session management (if applicable)
+        - label: N/A - Not applicable to this change
+
+  - type: textarea
+    id: security-scan-results
+    attributes:
+      label: Security Scan Evidence
+      description: Link to security scan results or paste summary
+      placeholder: |
+        Tool used: [e.g., Snyk, OWASP ZAP, SonarQube]
+        Scan date: YYYY-MM-DD
+        Critical: 0
+        High: 0
+        Medium: 2 (accepted as low risk - see details below)
+        Low: 5
+
+        Link to full report: [paste link or attach screenshot]
+
+        Or for manual testing: Completed manual security review checklist
+    validations:
+      required: true
+
+  - type: textarea
+    id: issues-found
+    attributes:
+      label: Issues Found & Resolution
+      description: List any defects found during testing and how they were addressed
+      placeholder: |
+        - Issue #123: Login button not responsive on mobile - FIXED
+        - Issue #124: Missing error message for invalid input - FIXED
+        - Or: No issues found
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Acceptance Criteria
+        All must be checked before approval.
+
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: Deployment Approval Checklist
+      description: Verify all criteria met
+      options:
+        - label: "✅ All functional requirements pass"
+          required: true
+        - label: "✅ Performance requirements met"
+          required: true
+        - label: "✅ No critical or high-risk security vulnerabilities"
+          required: true
+        - label: "✅ All testing documentation complete above"
+          required: true
+        - label: "✅ Ready for security reviewer sign-off"
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Next Steps
+        1. Self-review this issue for completeness
+        2. Tag security reviewer for approval: @security-reviewer
+        3. Once approved, proceed with deployment
+        4. Close this issue after successful deployment

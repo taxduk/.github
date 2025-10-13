@@ -1,0 +1,101 @@
+name: Feature Request
+description: Propose a new feature or enhancement
+title: "[FEATURE] "
+labels: ["enhancement", "needs-approval"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+        Propose a new feature or enhancement to existing functionality.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: What feature would you like to see implemented?
+      placeholder: A clear and concise description of the feature
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: Describe the problem or limitation this feature addresses
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How should this feature work?
+      placeholder: |
+        Describe how the feature should function, including:
+        - User interactions
+        - Expected behavior
+        - Any technical considerations
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature?
+      options:
+        - Critical (blocking important work)
+        - High (significant impact)
+        - Medium (nice to have)
+        - Low (minor improvement)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affects-security
+    attributes:
+      label: Security Impact
+      description: Does this feature involve security-sensitive areas?
+      options:
+        - "Yes - involves authentication/authorization"
+        - "Yes - handles sensitive data"
+        - "Yes - changes access controls"
+        - "No - no security implications"
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-stories
+    attributes:
+      label: User Stories (Optional)
+      description: Describe how users will interact with this feature
+      placeholder: |
+        As a [user type]
+        I want [feature]
+        So that [benefit]
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative approaches?
+      placeholder: Describe any alternative solutions or workarounds you've considered
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information, screenshots, mockups, or examples
+      placeholder: Add any additional context, links, images, or examples
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Next Steps
+        1. Team will review and discuss in comments
+        2. If approved, issue will be labeled `approved` and prioritized
+        3. Once implemented, a QA Testing issue will be created before deployment

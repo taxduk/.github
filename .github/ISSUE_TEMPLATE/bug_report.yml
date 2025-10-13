@@ -1,0 +1,116 @@
+name: Bug Report
+description: Report a bug or issue with existing functionality
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bug Report
+        Report a problem with existing functionality.
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe what's happening that shouldn't be happening
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this bug?
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: Describe what you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happens?
+      placeholder: Describe what actually happens, including any error messages
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this bug?
+      options:
+        - Critical (system down, data loss, security breach)
+        - High (major functionality broken, many users affected)
+        - Medium (feature not working, workaround exists)
+        - Low (minor issue, cosmetic problem)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: security-related
+    attributes:
+      label: Security Related?
+      description: Does this bug have security implications?
+      options:
+        - "Yes - potential security vulnerability"
+        - "Yes - exposes sensitive data"
+        - "Yes - authentication/authorization issue"
+        - "No - not security related"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Where does this occur?
+      placeholder: "e.g., Production, Staging, Browser: Chrome 120, OS: Windows 11"
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots/Logs
+      description: Add screenshots, error logs, or other evidence
+      placeholder: Paste screenshots or logs here
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Workaround
+      description: Is there a temporary workaround?
+      placeholder: Describe any workarounds if available
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information
+      placeholder: Add any other context about the problem
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Next Steps
+        1. Team will triage and assess severity
+        2. Critical/High severity bugs may be fast-tracked
+        3. Once fixed, a QA Testing issue will be created to verify the fix before deployment
