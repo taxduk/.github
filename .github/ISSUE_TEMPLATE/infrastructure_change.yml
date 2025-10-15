@@ -146,6 +146,37 @@ body:
       description: Are there any dependencies or prerequisites?
       placeholder: List any dependencies, approvals needed, or prerequisites
 
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Change Management Approvals (ISO27001)
+
+  - type: input
+    id: approver-tech
+    attributes:
+      label: Technical Approver
+      description: "@mention person who will approve (must be different from implementer)"
+      placeholder: "@alice"
+    validations:
+      required: true
+
+  - type: input
+    id: approver-security
+    attributes:
+      label: Security Approver
+      description: "@mention security reviewer (required for Medium/High risk only)"
+      placeholder: "@security-lead or N/A if Low risk"
+
+  - type: input
+    id: implementer
+    attributes:
+      label: Implementer
+      description: "@mention person who will implement (must be DIFFERENT from approver)"
+      placeholder: "@bob"
+    validations:
+      required: true
+
   - type: textarea
     id: additional-context
     attributes:
@@ -157,7 +188,29 @@ body:
     attributes:
       value: |
         ---
-        ## Next Steps
-        1. Team and security reviewer will assess risk and impact
-        2. If approved, change will be scheduled
-        3. A QA Testing issue will be created to verify the change before and after implementation
+        ## Post-Implementation (Complete after deployment)
+
+  - type: checkboxes
+    id: post-implementation
+    attributes:
+      label: Post-Implementation Verification
+      description: Check all after successful deployment
+      options:
+        - label: "Change successfully implemented"
+        - label: "All systems verified operational"
+        - label: "Documentation updated (architecture/network diagrams, runbooks, DR plans, etc.)"
+        - label: "BC/DR plans reviewed and updated if needed"
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Approval Workflow
+        1. **Submit** this issue
+        2. **Approver(s)** comment "APPROVED ✅" below (or request changes)
+        3. **Implementer** executes the change (must be different person from approver)
+        4. **Implementer** adds comment with deployment outcome and timestamp
+        5. **Check all post-implementation boxes** above
+        6. **Close** this issue with summary
+
+        **For audits:** This issue serves as your complete change record with full audit trail.
