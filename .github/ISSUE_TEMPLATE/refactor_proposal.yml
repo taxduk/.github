@@ -1,0 +1,122 @@
+name: Refactor Request
+description: Propose a code refactoring to improve codebase quality, maintainability, or performance
+title: "[REFACTOR]: "
+labels: ["refactor", "tech-debt"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing a refactor! Please provide as much detail as possible to help us understand the scope and priority of this work.
+
+  - type: textarea
+    id: current-state
+    attributes:
+      label: Current State / Problem
+      description: Describe what's currently problematic or what tech debt exists
+      placeholder: |
+        Example: The authentication module is tightly coupled with the user service, making it difficult to add new auth providers. There are also 3 different patterns for handling auth across the codebase.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: What approach do you suggest for this refactor?
+      placeholder: |
+        Example: Extract authentication logic into a standalone auth service with a common interface. Consolidate all auth patterns to use this new service.
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Expected Benefits
+      description: Why is this refactor worth doing?
+      placeholder: |
+        - Easier to add new authentication providers
+        - Reduced code duplication
+        - Clearer separation of concerns
+        - Better testability
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What parts of the codebase will be affected?
+      placeholder: |
+        - `src/auth/` module
+        - User service integration points
+        - API endpoints using authentication
+        - Tests for auth flows
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks & Mitigation
+      description: What could break? How will you mitigate these risks?
+      placeholder: |
+        Risks:
+        - Breaking existing authentication flows
+        - Session handling edge cases
+
+        Mitigation:
+        - Feature flag the new auth service
+        - Comprehensive integration tests
+        - Gradual rollout by auth provider
+    validations:
+      required: true
+
+  - type: textarea
+    id: testing-strategy
+    attributes:
+      label: Testing Strategy
+      description: How will you ensure nothing breaks?
+      placeholder: |
+        - Unit tests for new auth service
+        - Integration tests for all auth flows
+        - Manual testing of login/logout/session management
+        - Load testing for performance comparison
+    validations:
+      required: false
+
+  - type: dropdown
+    id: effort
+    attributes:
+      label: Estimated Effort
+      description: Rough estimate of the work involved
+      options:
+        - Small (< 1 week)
+        - Medium (1-2 weeks)
+        - Large (2-4 weeks)
+        - Extra Large (> 4 weeks)
+      default: 0
+    validations:
+      required: false
+
+  - type: textarea
+    id: definition-of-done
+    attributes:
+      label: Definition of Done
+      description: What needs to be completed for this refactor to be considered done?
+      placeholder: |
+        - [ ] Code refactored and merged
+        - [ ] All tests passing
+        - [ ] Documentation updated
+        - [ ] No regressions in production
+        - [ ] Old code removed (if applicable)
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information that would be helpful
+      placeholder: Related discussions, documentation, or references
+    validations:
+      required: false
